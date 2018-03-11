@@ -1,4 +1,4 @@
-##SQQOP JOB TO IMPORT DATA FROM TABLES TO HDFS
+##SQQOP JOBS TO IMPORT DATA FROM TABLES TO HDFS
 
 $echo -n "password">>mysql_password
 
