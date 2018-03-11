@@ -1,4 +1,4 @@
-# Banking-Data-Analysis-with-Apache-Hadoop
+# Data-Analysis-with-Apache-Hadoop
 Banking Data Analysis with Hadoop
 
 # 1. Creating Database,Tables and Inserting Data using MYSQL
