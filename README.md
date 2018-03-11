@@ -5,4 +5,4 @@ Banking Data Analysis with Hadoop
 Scripts in mysql_scripts.sql
 
 # 2. Creating Sqoop jobs to load table data to hdfs
-Sqoop job queries in sqoopjobqueries.doc
+Sqoop job queries in sqoop_job_queries
