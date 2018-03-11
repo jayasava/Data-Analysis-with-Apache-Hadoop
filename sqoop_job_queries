@@ -24,3 +24,7 @@ sqoop job --create shares_details_job
 	
 sqoop job --exec shares_details_job
 
+##Query to check list of sqoop jobs
+
+sqoop job --list
+
