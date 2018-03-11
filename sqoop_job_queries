@@ -1,30 +1,44 @@
 ##SQQOP JOBS TO IMPORT DATA FROM TABLES TO HDFS
 
 $echo -n "password">>mysql_password
-
+_________________________________________________________________________________________________________________________________________
 sqoop job --create loan_details_job 
 	-- import --connect jdbc:mysql://localhost:9000/bank 
 	--username myuser --password-file file:///home/user/hadoop/mysql_password 
 	--table LOAN_DETAILS --target-dir /bank/loan_details_stg
-
-##Executing sqoop job
-sqoop job --exec loan_details_job
 	
+/*Executing sqoop job*/
+sqoop job --exec loan_details_job
+
+/* Query to check the data in the file */
+hadoop fs -cat hdfs://localhost:9000/bank/loan_details_stg/*
+_________________________________________________________________________________________________________________________________________	
 sqoop job --create credit_card_details_job
 	-- import --connect jdbc:mysql://localhost:9000/bank 
 	--username myuser --password-file file:///home/user/hadoop/mysql_password 
 	--table CREDIT_CARD_DETAILS --target-dir /bank/credit_card_details_stg
 
+/*Executing sqoop job*/
 sqoop job --exec credit_card_details_job
 	
+/* Query to check the data in the file */
+
+hadoop fs -cat hdfs://localhost:9000/bank/credit_card_details_stg/*
+_________________________________________________________________________________________________________________________________________
 sqoop job --create shares_details_job
 	-- import --connect jdbc:mysql://localhost:9000/bank 
 	--username myuser --password-file file:///home/user/hadoop/mysql_password 
 	--table SHARES_DETAILS --target-dir /bank/shares_details_stg
-	
+
+/*Executing sqoop job*/
+
 sqoop job --exec shares_details_job
 
-##Query to check list of sqoop jobs
+/* Query to check the data in the file */
+
+hadoop fs -cat hdfs://localhost:9000/bank/loan_details_stg/*
+_________________________________________________________________________________________________________________________________________
+/*Query to check list of sqoop jobs*/
 
 sqoop job --list
 
