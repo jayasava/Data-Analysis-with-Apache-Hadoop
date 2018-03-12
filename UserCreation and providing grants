@@ -1,0 +1,10 @@
+/* Creating new User */
+CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'myuser';
+
+/* Granting all permissions to the user */
+grant all on *.* to 'myuser'@'localhost' with grant option;
+
+/* Reloading the Grant tables */
+FLUSH PRIVILEGES;
+
+COMMIT;
