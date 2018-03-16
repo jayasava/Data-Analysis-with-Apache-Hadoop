@@ -1,0 +1,24 @@
+/* Query to find out how many users gave rating of 1 provided minimum number of users who responded to survey is min 50 */
+
+SELECT SURVEY_ID,COUNT(USER_ID) FROM
+(
+SELECT SURVEY_ID,
+RATING,COUNT(USER_ID) OVER (PARTITION BY SURVEY_ID) AS NUM_USERS 
+FROM SURVEY_ANALYSIS 
+WHERE RATING=1
+)
+GROUP BY SURVEY_ID 
+HAVING NUM_USERS >=50
+
+/* Query to find average rating given as per Survey question provided number of users who responded to survey is min  50 */
+
+SELECT SURVEY_ID,AVG(RATING) FROM
+(
+SELECT SURVEY_ID,
+RATING,COUNT(USER_ID) OVER (PARTITION BY SURVEY_ID) AS NUM_USERS 
+FROM SURVEY_ANALYSIS 
+)
+WHERE NUM_USERS >= 50
+GROUP BY SURVEY_ID 
+
+
