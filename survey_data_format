@@ -1,0 +1,13 @@
+/* Data format for sample survey files */
+
+Date
+Question
+Rating
+User_id
+Survey_id
+
+/* Concatenating all survey files */
+ cd home/users/survey_data_files
+ cat *.txt > survey_data
+ 
+ 
