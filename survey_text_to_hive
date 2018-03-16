@@ -1,0 +1,15 @@
+/* Creating table in hive for survey_data */
+
+$hive
+$USE BANK;
+
+CREATE TABLE SURVEY_ANALYSIS(
+SURVEY_ID INT,
+USER_ID INT,
+SURVEY_DATE DATE,
+SURVEY_QSTN STRING,
+RATING INT
+)ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+/* Loading Data from txt file to table */
+LOAD DATA LOCAL INPATH '/home/users/survey_files/survey_data' INTO TABLE BANK.SURVEY_ANALYSIS;
