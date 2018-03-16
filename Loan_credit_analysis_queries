@@ -1,0 +1,33 @@
+
+
+$hive
+/* Query to find users having outstanding loan payments for atleast 3 months */
+
+SELECT decrypt(USER_ID)
+FROM LOAN_DETAILS
+WHERE datediff(from_unixtime(unix_timestamp(), 'yyyy-MM-dd'),
+decrypt(LAST_PAYMENT_DATE)) >= 90;
+
+/* Query to find users having no credit outstanding balance but has active loan oustanding paymebt */
+SELECT decrypt(L.USER_ID)
+FROM LOAN_DETAILS L INNER JOIN CREDIT_CARD_DETAILS C
+ON decrypt(L.USER_ID) = decrypt(C.USER_ID)
+WHERE CAST(decrypt(C.OUTSTNDNG_BLNCE) AS DOUBLE) = 0.0
+AND datediff(from_unixtime(unix_timestamp(), 'yyyy-MM-dd'), decrypt(L.DUE_DATE)) >=
+30;
+
+/* Query to find the max profit earned per share on daily basis */
+
+SELECT SHARE_ID, SHARE_DATE, MAX_PROFIT(COLLECT_LIST(SHR_PRICE))
+FROM
+(
+SELECT decrypt(SHARE_ID) AS SHARE_ID,
+decrypt(GMT_TMSTMP) AS GMT_TMSTMP,
+from_unixtime(CAST(decrypt(GMT_TMSTMP) AS int), 'yyyy-MM-dd') AS SHARE_DATE,
+CAST (decrypt(SHR_PRICE) AS double) AS SHR_PRICE
+FROM shares_info
+DISTRIBUTE BY SHARE_ID,
+from_unixtime(CAST(GMT_TMSTMP AS int), 'yyyy-MM-dd')
+SORT BY SHARE_ID,
+CAST(GMT_TMSTMP AS int)
+) GROUP BY SHARE_ID, SHARE_DATE;
