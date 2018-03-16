@@ -1,0 +1,10 @@
+/* Adding Hive UDF to utilise Encryption, Decryption and MaxProfit Functions */
+
+$hive
+ADD /home/user/hive-udf.jar
+
+/* Utilizing AES Encryption, Decryption and MAXPROFIT functions */
+
+CREATE TEMPORARY FUNCTION encrypt AS 'encryption.AESencrypt';
+CREATE TEMPORARY FUNCTION decrypt AS 'encryption.AESdecrypt';
+CREATE TEMPORARY FUNCTION max_profit AS 'maxprofit.MaxProfit';
