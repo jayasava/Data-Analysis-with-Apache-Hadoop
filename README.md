@@ -8,5 +8,6 @@ Scripts in mysql_scripts.sql
 Sqoop job queries in sqoop_job_queries
 
 # 3. Loading data from staging data in hdfs to hive 
-Hive queries in hdfs_to_hive
+Creating External Tables in Hive and load data from hdfs (queries in hdfs_to_hive)
+
 
