@@ -1,1 +1,34 @@
 
+/* Inserting into Hive Tables with Data Eencryption */
+
+
+INSERT INTO LOAN_DETAILS 
+(
+SELECT encrypt(LOAN_ID),
+encrypt(USER_ID),
+encrypt(LAST_PAYMENT_DATE), 
+encrypt(INSTALLMENT),
+encrypt(DATE_PAYABLE_NEXT) 
+FROM LOAN_DETAILS_STG;
+)
+
+INSERT INTO CREDIT_CARD_DETAILS
+(
+encrypt(CC_ID),
+encrypt(CC_NUMBER),
+encrypt(USER_ID),
+encrypt(MAX_CREDIT),
+encrypt(OUTSTNDNG_BLNCE),
+encrypt(DUE_DATE),
+FROM CREDIT_CARD_DETAILS_STG;
+)
+
+
+INSERT INTO SHARES_DETAILS
+(
+encrypt(SHARE_ID),
+encrypt(CMPNY_NM),
+encrypt(GMT_TMSTMP),
+encrypt(SHR_PRICE)
+FROM SHARES_DETAILS_STG;
+)
